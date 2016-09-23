@@ -38,7 +38,7 @@ public class UC01CadastrarEmpresa {
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	
+			empresaDAO.exclui("89424232000180");
 	}
 	/**
 	 * verifica o comportamento do sistema na inclusão 
@@ -51,10 +51,11 @@ public class UC01CadastrarEmpresa {
 	/**
 	 * verificar o comporatamento se uma empresa ja está cadastrada
 	 */
-	@Test (expected=RuntimeException.class)
+	@Test(expected=RuntimeException.class)
 	public void CT02UC01FBCadastrarEmpresa_ja_dadastrada() {
 		empresaDAO.adiciona(empresa);
 		empresaDAO.adiciona(empresa);
+		//assertEquals(0, empresaDAO.adiciona(empresa));
 	}
 	
 	/**
@@ -67,6 +68,12 @@ public class UC01CadastrarEmpresa {
 		
 	}
 	
+	@Test//(expected=RuntimeException.class)
+	public void CT03UC02FBExclusao_para_CNPJ_Invalido() {
+		assertEquals(0,empresaDAO.exclui("11"));
+		//assertEquals(0,empresaDAO.exclui("89424232000180"));
+
+	}
 	
 
 }
