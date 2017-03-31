@@ -45,8 +45,8 @@ public class EmpresaDAO {
 		}
 		return codigoretorno;
 	}
-	
-	public static Empresa consulta(String cnpj) {
+
+	public  Empresa consultaEmpresa(String cnpj) {
 		Empresa empresa = null;
 		java.sql.PreparedStatement ps;
 		try (Connection conn = new FabricaDeConexoes().getConnection()) {
@@ -68,8 +68,8 @@ public class EmpresaDAO {
 		}
 		return empresa;
 	}
-	
-	
-	
+
+
+
 
 }

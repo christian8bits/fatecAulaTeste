@@ -4,58 +4,68 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.sceweb.modelo.Empresa;
 import br.sceweb.modelo.EmpresaDAO;
-
-public class UC02ConsultarEmpresa {
-	static Empresa resultadoEsperado;
-	static Empresa resultadoObtido;
-	
-	static EmpresaDAO empresaDAO;
-
-	@Before
-	public void setUp() throws Exception {
-	}
-	
+/**
+ * 
+ * @author Lab103
+ * @version 2017-03-31
+ * caso de teste consulta empresa
+ */
+public class UC02ConsultarEmpresa { // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+/**
+ * resultado esperado
+ */
+	static Empresa ResultadoEsperado;
+	/**
+	 * resultado obtido
+	 */
+	static Empresa ResultadoObtido;
+	/**
+	 * empresa dao
+	 */
+	static EmpresaDAO EEmpresaDAO;
+/**
+ * pre condicoes antes da execucao da classe
+ * @throws Exception
+ */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		resultadoEsperado = new Empresa();
-		empresaDAO = new EmpresaDAO(); 
-		resultadoEsperado.setNomeDaEmpresa("empresa x");
-		resultadoEsperado.setCnpj("89424232000180");
-		resultadoEsperado.setNomeFantasia("empresa x");
-		resultadoEsperado.setEndereco("rua taquari");
-		resultadoEsperado.setTelefone("2222");
-		empresaDAO.adiciona(resultadoEsperado);
-		
-	}
-
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	//empresaDAO.exclui(cnpj)
-		
+	public static void setUpBeforeClass() {
+		ResultadoEsperado = new Empresa();
+		EEmpresaDAO = new EmpresaDAO();
+		ResultadoEsperado.setNomeDaEmpresa("empresa x");
+		ResultadoEsperado.setCnpj("89424232000180");
+		ResultadoEsperado.setNomeFantasia("empresa x");
+		ResultadoEsperado.setEndereco("rua taquari");
+		ResultadoEsperado.setTelefone("2222");
+		EEmpresaDAO.adiciona(ResultadoEsperado);
 	}
 	/**
-	 * 
-	 * @throws Exception
+	 * teste de consulta empresa com sucesso
 	 */
-	
-	@After
-	public void exluiEmpresa() throws Exception {
-	empresaDAO.exclui("89424232000180");
-		
-	}
-
 	@Test
-	public void CT01UC02Consultar_Empresa_Com_Sucesos() {
-		resultadoObtido = empresaDAO.consulta("89424232000180");
-		assertTrue(resultadoEsperado.equals(resultadoObtido));
-		
+	public void cT01UC02ConsultarEmpresa_com_sucesso() {
+		ResultadoObtido = EEmpresaDAO.consultaEmpresa("89424232000180");
+		assertTrue(ResultadoEsperado.equals(ResultadoObtido));
+	}
+/**
+ * condicoes pos execucao do teste
+ * @throws Exception
+ */
+	@After
+	public void excluiEmpresa() {
+		EEmpresaDAO.exclui("89424232000180");
+	}
+/**
+ * condicoes pos execucao da classe
+ * @throws Exception
+ */
+	@AfterClass
+	public static void tearDownAfterClass()  {
+
 	}
 
 }
